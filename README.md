@@ -2,7 +2,7 @@
 
 Shalean — service for sharing photos between users, to comment on the received work :)
 
-![markdown logo](https://i.ibb.co/BCV3Bn0/chrome-n3-CNx-U7j-IQ.jpg)
+![markdown logo](https://i.ibb.co/qDtKHqb/chrome-j-AWXe-NIAw-I.jpg)
 
 
 # Shalean API
