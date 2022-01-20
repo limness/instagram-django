@@ -1,6 +1,8 @@
 
 from .models import Image, Description
 
+from PIL import Image as ImagePIL
+
 
 def get_total_image_size() -> float:
     """Get total image size in MB"""
@@ -14,7 +16,8 @@ def get_total_unique_images() -> int:
     """Get unique images by name"""
     total_unique_files = set()
     for object in Image.objects.all():
-        total_unique_files.add(object.image.file.name)
+        image = ImagePIL.open(object.image)
+        total_unique_files.add(tuple(image.getdata()))
 
     return len(total_unique_files)
 
