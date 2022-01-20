@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Shalean - Sharing images</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'image_manager/styles.css' %}">
+  </head>
+  <body>
+    <div class="main-header">
+      <div class="navigation">
+        <div class="logo">
+          <a href="{% url 'index' %}">Shalean</a>
+        </div>
+        <div class="container-left">
+          <div class="title-left">
+            Общий архив изображений
+          </div>
+          <div class="container-images">
+            {% for image in images %}
+            <div class="container-image">
+              <div class="image">
+                <img src="/m/site_media/432.png" height="100" width="100"/>
+              </div>
+              <div class="container-description">
+                <span style="font-weight: bold;">
+                {{ image.image }}
+                </span>
+                Комментарии:
+                <span style="font-weight: bold;">
+                  {% for description in descriptions %}
+                    {% if description.image == image %}
+                      {{ description.description }}
+                    {% endif %}
+                  {% endfor %}
+                </span>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <span style="display: flex;">
+            <div class="button" style="margin-right: 7px">
+              <a href="{% url 'create_image' %}">Загрузить изображение</a>
+            </div>
+            <div class="button" style="margin-left: 7px">
+              <a href="/create_image">Новый комментарий</a>
+            </div>
+          </span>
+          <div class="api-block">
+            Используй <a href="/create_image">API</a> моего проекта, чтобы воспользоваться большим функционалом.
+            Ты сможешь изменять и удалять ранее созданный комментарий, изображение и многое другое
+          </div>
+        </div>
+        <div class="container-right">
+          <div class="title-left">
+            Статистика (/stat)
+          </div>
+          <div class="container-stat">
+            <div class="stat-line">
+              Число уникальных изображений: <span style="font-weight: bold;">{{ data.Total_Unique_Images }}</span>
+            </div>
+            <div class="stat-line">
+              Число уникальных комментариев: <span style="font-weight: bold;">{{ data.Total_Unique_Descriptons }}</span>
+            </div>
+            <div class="stat-line">
+              Общий размер файлов: <span style="font-weight: bold;">{{ data.Total_Size_Mb }} МБ</span>
+            </div>
+            <div class="stat-line">
+              Число файлов и комментариев: <span style="font-weight: bold;">{{ data.Total_Images }} и {{ data.Total_Descriptons }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

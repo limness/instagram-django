@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Shalean - Sharing images</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'image_manager/styles.css' %}">
+  </head>
+  <body>
+    <div class="main-header">
+      <div class="navigation">
+        <div class="logo">
+          <a href="/">Shalean</a>
+        </div>
+        <div class="container-left">
+          <div class="title-left">
+            Загрузить новое изображение
+          </div>
+          <form enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+
+            {% for field in form  %}
+                <p>{{ field.label }}: {{ field }}</p>
+            {% endfor %}
+            <input type="submit" value="Загрузить изображение">
+            <!-- <button type="Submit">Submit</button> -->
+            <!-- <input name="myFile" type="file"> -->
+            <!-- <button type="submit">Submit</button> -->
+            <!-- <span style="display: flex;">
+              <input type="submit" value="Загрузить изображение">
+            </span> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
