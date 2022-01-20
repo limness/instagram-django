@@ -1,3 +1,10 @@
+# Shalean
+
+Shalean — service for sharing photos between users, to comment on the received work :)
+
+![markdown logo](https://i.ibb.co/BCV3Bn0/chrome-n3-CNx-U7j-IQ.jpg)
+
+
 # Shalean API
 
 ## Request & Response
@@ -178,7 +185,11 @@ Response body:
     {
     }
     
-* 200 - OK
-* 201 - Created
-* 204 - No content
-* 400 - Bad Request
+
+| Status Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+| 201 | `CREATED` |
+| 400 | `BAD REQUEST` |
+| 404 | `NOT FOUND` |
+| 500 | `INTERNAL SERVER ERROR` |
