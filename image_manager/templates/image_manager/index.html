@@ -8,29 +8,34 @@
   </head>
   <body>
     <div class="main-header">
+      <div class="logo">
+        <a href="{% url 'index' %}">Shalean</a>
+      </div>
       <div class="navigation">
-        <div class="logo">
-          <a href="{% url 'index' %}">Shalean</a>
-        </div>
         <div class="container-left">
           <div class="title-left">
             Общий архив изображений
           </div>
           <div class="container-images">
+            {% if images.count == 0 %}
+              <div class="api-block" style="font-size: 12pt; font-weight: bold;">
+              Архив в данный момент пуст, побыстрее наполни меня!
+            </div>
+            {% endif %}
             {% for image in images %}
             <div class="container-image">
               <div class="image">
-                <img src="/m/site_media/432.png" height="100" width="100"/>
+                <img src="{{ image.filename }}" height="100" width="100"/>
               </div>
               <div class="container-description">
                 <span style="font-weight: bold;">
-                {{ image.image }}
-                </span>
+                ID {{ image.id }}
+              </span><br>
                 Комментарии:
                 <span style="font-weight: bold;">
                   {% for description in descriptions %}
                     {% if description.image == image %}
-                      {{ description.description }}
+                      {{ description.description }} ({{ description.id }} id)
                     {% endif %}
                   {% endfor %}
                 </span>
@@ -43,11 +48,11 @@
               <a href="{% url 'create_image' %}">Загрузить изображение</a>
             </div>
             <div class="button" style="margin-left: 7px">
-              <a href="/create_image">Новый комментарий</a>
+              <a href="{% url 'create_description' %}">Новый комментарий</a>
             </div>
           </span>
           <div class="api-block">
-            Используй <a href="/create_image">API</a> моего проекта, чтобы воспользоваться большим функционалом.
+            Используй <a href="https://github.com/limness/instagram-django">API</a> моего проекта, чтобы воспользоваться большим функционалом.
             Ты сможешь изменять и удалять ранее созданный комментарий, изображение и многое другое
           </div>
         </div>

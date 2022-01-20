@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('create_image/', views.CreateImageFromForm.as_view(), name='create_image'),
-    #path('create_description/', views.CreateDescriptionFromForm.as_view()),
+    path('create_description/', views.CreateDescriptionFromForm.as_view(), name='create_description'),
     path('api/stat/', views.ShowStat.as_view()),
     path('api/create_image/', views.CreateImage.as_view()),
     path('api/delete_image/<pk>', views.DeleteImage.as_view()),

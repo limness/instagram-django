@@ -14,15 +14,13 @@
       <div class="container-center">
         <div class="container-left">
           <div class="title-left">
-            Загрузить новое изображение
+            Создать новый комментарий
           </div>
           <form enctype="multipart/form-data" method="post">
             {% csrf_token %}
-            <div class="file-input">
-              <input type="file" id="image" name="image" class="file">
-              <label for="image">Выберите файл</label>
-            </div>
-            <input type="submit" value="Загрузить изображение">
+            <input type="text" class="form__input" id="image" name="image" placeholder="ID фотографии" />
+            <input type="text" class="form__input" id="description" name="description" placeholder="Комментарий" />
+            <input type="submit" value="Создать комментарий">
           </form>
         </div>
       </div>

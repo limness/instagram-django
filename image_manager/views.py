@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 from django.views.generic.edit import CreateView
 
-from .forms import ImageForm
+from .forms import ImageForm, DescriptionForm
 from .models import Image, Description
 from .serializers import ImageSerializer, DescriptionSerializer
 
@@ -25,22 +25,33 @@ def index(req):
     description = Description.objects.all()
     data = form_stat()
     context = {'images': image, 'descriptions': description, 'data' : data}
+
     return render(req, 'image_manager/index.html', context)
 
+#### Stats
+
 class ShowStat(APIView):
-    """
-    Stat manager. Return a stat list
-    """
+
     def get(self, request, format=None):
-        # Form response data
+        """Form response data"""
         data = form_stat()
         return Response(data)
 
 #### Images Templates
 
 class CreateImageFromForm(CreateView):
+
     form_class = ImageForm
     template_name = 'image_manager/create_image.html'
+    success_url = reverse_lazy('index')
+
+    def form_invalid(self, form):
+        return HttpResponse(f"form is invalid.. {str(form)}")
+
+class CreateDescriptionFromForm(CreateView):
+
+    form_class = DescriptionForm
+    template_name = 'image_manager/create_description.html'
     success_url = reverse_lazy('index')
 
     def form_invalid(self, form):
@@ -70,7 +81,6 @@ class RetrieveImage(RetrieveAPIView):
 
 #### Descriptions
 
-# curl --location --request GET 'http://localhost:8000/api/images/'
 class CreateDescription(CreateAPIView):
 
     queryset = Description.objects.all()
